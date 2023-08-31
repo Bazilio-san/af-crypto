@@ -1,2 +1,4 @@
-const { getRnd } = require('../dist/cjs/index.js');
+/* eslint-disable no-console */
+const { getRnd } = require('../dist/cjs');
+
 console.log(getRnd());
