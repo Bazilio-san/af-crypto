@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
-const { md5, md5UID, simpleRandomHash, simpleRandomUid, xxHash64, xxHash32 } = require('../dist/cjs');
+const {
+  md5, md5UID, simpleRandomHash, simpleRandomUid, xxHash64, xxHash32, shortHash, getUID,
+} = require('../dist/cjs');
 
 const anyString = 'any string';
 const anyObj = { a: 'any string', b: [1, 2, 3] };
@@ -17,3 +19,5 @@ console.log('simpleRandomUid: ', simpleRandomUid());
 
 console.log('xxHash32: ', xxHash32(anyObj));
 console.log('xxHash64: ', xxHash64(anyObj));
+console.log('shortHash: ', shortHash(anyObj));
+console.log('getUID: ', getUID(anyObj));

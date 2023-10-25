@@ -5,6 +5,7 @@ import { v5 } from 'uuid';
 
 /**
  * Returns a random string of 13 digits
+ * Ex: 7772487018632
  */
 export const getRnd = (): string => Math.random()
   .toString()
@@ -14,6 +15,7 @@ export const getRnd = (): string => Math.random()
 
 /**
  * Возвращает MD5 хеш данных.
+ * Ex: de822b6217846bfa1dcf30b701086929
  */
 export const md5 = (data: string | BinaryLike, options?: { inputEncoding?: Encoding }): string => (options?.inputEncoding
   ? crypto.createHash('md5').update(data as string, options?.inputEncoding).digest('hex')
@@ -21,6 +23,7 @@ export const md5 = (data: string | BinaryLike, options?: { inputEncoding?: Encod
 
 /**
  * Возвращает хеш данных в виде UID.
+ * Ex: 622B82DE-8417-FA6B-1DCF-30B701086929
  */
 export const md5UID = (data: string | BinaryLike, options?: { inputEncoding?: Encoding }): string => {
   const x = md5(data, options);
@@ -37,7 +40,10 @@ export const md5UID = (data: string | BinaryLike, options?: { inputEncoding?: En
   }-${x.substring(20, 32)}`.toUpperCase();
 };
 
+// Ex: 7c93cb01f21061ade3be5ac66b449fef
 export const simpleRandomHash = (): string => md5(String(Date.now() + Math.random()));
+
+// Ex: 7B9EE256-EFC6-90A0-8423-6E29C0EC872C
 export const simpleRandomUid = (): string => md5UID(String(Date.now() + Math.random()));
 
 const isObject = (v: any) => v != null
@@ -94,12 +100,17 @@ export const xxHash = (data: any, base: '32' | '64' | 32 | 64 = 32, seed = defau
   return (String(base) === '64' ? h64 : h32)(stringToHash, seed).toString(16);
 };
 
+// Ex: 84818f3b
 export const xxHash32 = (data: any, seed: number = defaultSeed): string => xxHash(data, 32, seed);
+
+// Ex: 84818f3b
 export const shortHash = (data: any, seed: number = defaultSeed): string => xxHash(data, 32, seed);
 
+// Ex: 3234bdb6902d2f2f
 export const xxHash64 = (data: any, seed: number = defaultSeed): string => xxHash(data, 64, seed);
 
 /**
  * Возвращает UUID для переданных данных
+ * Ex: 3b414d9a-e979-55de-aa56-0bf6392a88aa
  */
 export const getUID = (data: any): string => v5(xxHash64(data), '7D51C591-6202-4372-85F2-DF407E734B04');
