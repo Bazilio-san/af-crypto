@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 import * as crypto from 'crypto';
 import { BinaryLike, Encoding } from 'crypto';
 import { h64, h32 } from 'xxhashjs';
@@ -114,3 +115,18 @@ export const xxHash64 = (data: any, seed: number = defaultSeed): string => xxHas
  * Ex: 3b414d9a-e979-55de-aa56-0bf6392a88aa
  */
 export const getUID = (data: any): string => v5(xxHash64(data), '7D51C591-6202-4372-85F2-DF407E734B04');
+
+/**
+ * Ex: 72585530 | 893301214
+ */
+export const hashCode = (s: any): number => {
+  if (typeof s === 'object') {
+    s = JSON.stringify(s);
+  }
+  s = String(s);
+  const hc = s.split('').reduce((a: number, b: string) => {
+    a = ((a << 5) - a) + b.charCodeAt(0);
+    return a & a;
+  }, 0);
+  return (hc + 2147483647) + 1;
+};

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 const {
-  md5, md5UID, simpleRandomHash, simpleRandomUid, xxHash64, xxHash32, shortHash, getUID,
+  md5, md5UID, simpleRandomHash, simpleRandomUid, xxHash64, xxHash32, shortHash, getUID, hashCode
 } = require('../dist/cjs');
 
 const anyString = 'any string';
@@ -21,3 +21,5 @@ console.log('xxHash32: ', xxHash32(anyObj));
 console.log('xxHash64: ', xxHash64(anyObj));
 console.log('shortHash: ', shortHash(anyObj));
 console.log('getUID: ', getUID(anyObj));
+
+console.log('hashCode: ', hashCode('sdaslk AddSLAKdDS A;LDK ;adlkj A;DLKJ da;lkjA;DLKJ A;dlkj ADL;Kj adKLJA;DLj kadiue yfweufwfeiu wiufcwuih'));
